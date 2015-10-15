@@ -1,0 +1,16 @@
+Linux
+=====
+Install Docker
+--------------
+http://docs.docker.com/linux/step_one/
+
+OSX
+===
+Install Docker Toolbox
+----------------------
+https://www.docker.com/toolbox
+
+`docker-machine create`
+
+For those used to boot2docker:
+https://docs.docker.com/machine/migrate-to-machine/
