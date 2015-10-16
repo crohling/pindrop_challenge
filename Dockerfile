@@ -3,4 +3,5 @@ ADD . /code
 WORKDIR /code
 RUN pip install -r requirements.txt
 RUN nosetests
-CMD python src/app.py
+EXPOSE 8000
+CMD python /run/app.py
