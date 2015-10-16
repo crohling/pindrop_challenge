@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import time
 import tornado.ioloop
 import tornado.web
@@ -11,6 +12,7 @@ from handlers import PhoneHandler
 from parsing import parse_page
 
 def get_data(args):
+    """Load data, either from command line entered file, or 800notes.com"""
     content = None
     if args.file:
         print "File passed, reading file from disk"
@@ -26,6 +28,7 @@ def get_data(args):
     return content
 
 def load_redis(database, results):
+    """Load the phone number data results into redis, if applicable"""
     for item in results:
         if not item.get("area_code"):
             raise ValueError("The following record was missing an area_code %s" % item)
