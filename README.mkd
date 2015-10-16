@@ -5,6 +5,12 @@ the page, and Beautiful soup to parse the HTML. It also stores it's data in eith
 or Redis, at the behest of the user. This project uses docker liberally, as my understanding
 is that the requesting company is moving in that direction
 
+The Host
+--------
+ - Assuming installation has occurred with docker-machine, please run `docker-machine ip dev` to
+    attain the correct ip address, and navigate to `http://GATHERED_IP_ADDRESS:8000/area_code/` to
+    begin
+
 Available Endpoints
 -------------------
  - For retreiving all documents with area codes: `GET /area_code/`
