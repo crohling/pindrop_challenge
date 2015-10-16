@@ -26,7 +26,10 @@ class PhoneHandler(tornado.web.RequestHandler):
         if value:
             value_document = None
             if self.is_redis:
-                value_document = json.loads(self.database.get("%s|%s" % (field, value)))
+                value_document = self.database.get("%s|%s" % (field, value))
+                if not value_document:
+                    raise tornado.web.HTTPError(404)
+                value_document = json.loads(value_document)
             else:
                 value_document = [doc for doc in self.database if doc.get(field) == value]
             if value_document:
