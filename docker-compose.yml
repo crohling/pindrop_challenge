@@ -1,0 +1,11 @@
+app:
+    build: .
+    ports:
+        - "8000:8000"
+    volumes:
+        - ./src:/run
+    links:
+        - redis
+
+redis:
+    image: redis
