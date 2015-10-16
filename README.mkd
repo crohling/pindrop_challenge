@@ -1,16 +1,42 @@
+Overview
+========
+This project is a web scraper for 800notes.com. It utilizes python's urllib2 library to scrape
+the page, and Beautiful soup to parse the HTML. It also stores it's data in either memory
+or Redis, at the behest of the user
+
+Installation
+============
 Linux
-=====
-Install Docker
---------------
-http://docs.docker.com/linux/step_one/
+-----
+ - Install Docker(http://docs.docker.com/linux/step_one/)(tested with 1.8.3)
+ - Install docker-compose(tested with 1.4.2)
 
 OSX
-===
-Install Docker Toolbox
-----------------------
-https://www.docker.com/toolbox
+---
+ - Install Docker Machine(via Toolbox)(https://www.docker.com/toolbox)(tested with 0.4.1)
+ - Install docker-compose(tested with 1.4.2)
 
-`docker-machine create`
+Begin Service(with redis)
+=============
+Linux
+-----
+ - `docker-compose build && docker-compose up -d`
+OSX
+---
+ - ```docker-machine create && docker-machine create --driver virtualbox dev && docker-machine start dev```
+ - `eval $(docker-machine env dev)`
+ - `docker-compose build && docker-compose up -d`
 
+Run Without Redis
+=================
+ - `rm docker-compose.yml && ln -s docker-compose.yml.without_redis docker-compose.yml`
+ - `docker-compose stop && docker-compose rm && docker-compose up -d`
+
+Run Tests
+=========
+ - `docker-compose run --rm app nosetests`
+
+Miscellaneous
+=============
 For those used to boot2docker:
 https://docs.docker.com/machine/migrate-to-machine/

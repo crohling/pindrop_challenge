@@ -26,7 +26,6 @@ class PhoneHandler(tornado.web.RequestHandler):
                     data.append(json.loads(self.database.get(key)))
             else:
                 data = self.database
-        print data, type(data)
         self.set_header('Content-Type', 'application/json')
         self.write(json.dumps(data))
         return

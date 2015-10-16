@@ -27,6 +27,10 @@ def get_data(args):
 
 def load_redis(database, results):
     for item in results:
+        if not item.get("area_code"):
+            raise ValueError("The following record was missing an area_code %s" % item)
+        if not item.get("phone_number"):
+            raise ValueError("The following record was missing a phone_number %s" % item)
         database.set("area_code|%s" % item.get("area_code"), json.dumps(item))
         database.set("phone_number|%s" % item.get("phone_number"), json.dumps(item))
 

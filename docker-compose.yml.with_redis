@@ -1,0 +1,12 @@
+app:
+    build: .
+    ports:
+        - "8000:8000"
+    volumes:
+        - ./src:/run
+    links:
+        - redis
+    command: python /run/app.py -r
+
+redis:
+    image: redis
