@@ -5,6 +5,7 @@ import json
 import itertools
 # I would normally use the requests library here
 import urllib2
+import argparse
 from BeautifulSoup import BeautifulSoup
 
 ROOT_LIST_ITEM_TAG_CLASS = "oos_listItem oos_20plus"
@@ -59,12 +60,19 @@ class PhoneHandler(tornado.web.RequestHandler):
         return
 
 if __name__ == "__main__":
-#    opener = urllib2.build_opener()
-#    opener.addheaders = [('User-agent', 'Mozilla/5.0')]
-#    main_page = opener.open('http://800notes.com/')
-#    content = main_page.read()
+    parser = argparse.ArgumentParser(description='Serve an API to 800notes front page data')
+    parser.add_argument('--file', type=argparse.FileType('r'))
+    args = parser.parse_args()
     content = None
-    with open("/run/main_page.html") as main_page:
+    print args.file
+    if args.file:
+        print "File passed, reading file from disk"
+        content = args.file.read()
+    else:
+        print "Reading 800notes.com"
+        opener = urllib2.build_opener()
+        opener.addheaders = [('User-agent', 'Mozilla/5.0')]
+        main_page = opener.open('http://800notes.com/')
         content = main_page.read()
     if not content or len(content) < 1:
         raise Exception("Content of page unable to be read")
